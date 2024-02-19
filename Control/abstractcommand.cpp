@@ -34,51 +34,49 @@ void AbstractCommand::clearObjectList()
     _objects.clear();
 }
 
-QDataStream & operator >>(QDataStream &stream, AbstractCommand *&command)
-{
-    if ( command )
-        delete command;
+// QDataStream & operator >>(QDataStream &stream, AbstractCommand *&command)
+// {
+    // if ( command )
+    //     delete command;
 
-    int type, size, destination;
-    float priority;
-    quint64 infoFlag;
-    QString userId;
+    // int type, size, destination;
+    // float priority;
+    // quint64 infoFlag;
+    // QString userId;
 
-    stream >> type >> destination >> size >> userId >> infoFlag >> priority;
+    // stream >> type >> destination >> size >> userId >> infoFlag >> priority;
 
-    // IFactory * factory = IFactory::factory( CommandFactoryId );
+    // // IFactory * factory = IFactory::factory( CommandFactoryId );
 
-    // Factory<AbstractCommand> * fC = dynamic_cast<Factory<AbstractCommand>*>( factory );
+    // // Factory<AbstractCommand> * fC = dynamic_cast<Factory<AbstractCommand>*>( factory );
 
-    // if ( !fC )
+    // // if ( !fC )
+    // //     return stream;
+
+    // // command = fC->create( type );
+
+    // if ( !command )
     //     return stream;
 
-    // command = fC->create( type );
+    // // command->setUserId( userId );
+    // // command->setDestination( static_cast<AbstractCommand::CommandDestination>( destination ) );
+    // // command->_infoFlag = infoFlag;
+    // // command->_priority = priority;
 
-    if ( !command )
-        return stream;
+    // // command->fromDataStream( stream );
 
-    // command->setUserId( userId );
-    // command->setDestination( static_cast<AbstractCommand::CommandDestination>( destination ) );
-    // command->_infoFlag = infoFlag;
-    // command->_priority = priority;
+    // // for ( int i(0); i < size; ++i )
+    // // {
+    // //     AbstractObject * obj = NULL;
+    // //     stream >> obj;
+    // //     command->_objects.push_back( obj );
+    // // }
 
-    // command->fromDataStream( stream );
+//     return stream;
+// }
 
-    // for ( int i(0); i < size; ++i )
-    // {
-    //     AbstractObject * obj = NULL;
-    //     stream >> obj;
-    //     command->_objects.push_back( obj );
-    // }
-
-    return stream;
-}
-
-QDataStream & operator << (QDataStream &stream, AbstractCommand *&command)
-// QDataStream & operator<<(QDataStream &stream, AbstractCommand * command)
-// QDataStream & operator << (QDataStream &stream, AbstractCommand * command)
-{
+// QDataStream & operator << ( QDataStream &stream, AbstractCommand *& command )
+// {
     // stream << static_cast<int>( command->_commandType );
     // stream << static_cast<int>( command->_commandDestination );
     // stream << static_cast<int>( command->_objects.size() );
@@ -98,5 +96,6 @@ QDataStream & operator << (QDataStream &stream, AbstractCommand *&command)
     //     ++i;
     // }
 
-    return stream;
-}
+//     return stream;
+// }
+

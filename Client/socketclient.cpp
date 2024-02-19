@@ -1,6 +1,7 @@
 #include "socketclient.h"
 
-// SocketClient::SocketClient() {}
+#include <QDataStream>
+
 SocketClient::SocketClient(QObject *parent) : QObject(parent)
 {
     // Установите ключ шифрования

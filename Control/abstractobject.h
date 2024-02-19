@@ -25,8 +25,42 @@ public:
 
     inline const ObjectType &           type() const    { return _type; }
 
-    friend QDataStream & operator<<( QDataStream &stream, AbstractObject * obj );
-    friend QDataStream & operator>>( QDataStream &stream, AbstractObject *& obj );
+    friend QDataStream & operator<<( QDataStream &stream, AbstractObject * obj )
+    {
+        if ( !obj )
+            return stream;
+
+        int type = static_cast<int>( obj->_type );
+        stream << type;
+
+        obj->toDataStream( stream );
+        return stream;
+    }
+    friend QDataStream & operator>>( QDataStream &stream, AbstractObject *& obj )
+    {
+        if ( obj )
+            delete obj;
+
+        // Factory<AbstractObject> * fObj = dynamic_cast<Factory<AbstractObject>*>
+        //     (
+        //         IFactory::factory( ObjectFactoryId )
+        //         );
+
+        // if ( !fObj )
+        //     return stream;
+
+        int type;
+        stream >> type;
+
+        // obj = fObj->create( type );
+
+        // if ( !obj )
+        //     return stream;
+
+        // obj->fromDataStream( stream );
+
+        return stream;
+    }
 
     virtual AbstractObject *            copy() const = 0;
 

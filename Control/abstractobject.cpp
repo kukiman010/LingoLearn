@@ -11,40 +11,40 @@ AbstractObject::AbstractObject(QObject *parent) : QObject (parent)
 
 AbstractObject::~AbstractObject() {}
 
-QDataStream &operator<<(QDataStream &stream, AbstractObject *obj)
-{
-    if ( !obj )
-        return stream;
+// QDataStream &operator<<(QDataStream &stream, AbstractObject *obj)
+// {
+//     if ( !obj )
+//         return stream;
 
-    int type = static_cast<int>( obj->_type );
-    stream << type;
+//     int type = static_cast<int>( obj->_type );
+//     stream << type;
 
-    obj->toDataStream( stream );
-    return stream;
-}
+//     obj->toDataStream( stream );
+//     return stream;
+// }
 
-QDataStream &operator>>(QDataStream &stream, AbstractObject *&obj)
-{
-    if ( obj )
-        delete obj;
+// QDataStream &operator>>(QDataStream &stream, AbstractObject *&obj)
+// {
+//     if ( obj )
+//         delete obj;
 
-    // Factory<AbstractObject> * fObj = dynamic_cast<Factory<AbstractObject>*>
-    //     (
-    //         IFactory::factory( ObjectFactoryId )
-    //         );
+//     // Factory<AbstractObject> * fObj = dynamic_cast<Factory<AbstractObject>*>
+//     //     (
+//     //         IFactory::factory( ObjectFactoryId )
+//     //         );
 
-    // if ( !fObj )
-    //     return stream;
+//     // if ( !fObj )
+//     //     return stream;
 
-    int type;
-    stream >> type;
+//     int type;
+//     stream >> type;
 
-    // obj = fObj->create( type );
+//     // obj = fObj->create( type );
 
-    // if ( !obj )
-    //     return stream;
+//     // if ( !obj )
+//     //     return stream;
 
-    // obj->fromDataStream( stream );
+//     // obj->fromDataStream( stream );
 
-    return stream;
-}
+//     return stream;
+// }

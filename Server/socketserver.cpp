@@ -1,5 +1,8 @@
 #include "socketserver.h"
 
+#include <QDataStream>
+#include <QUuid>
+
 SocketServer::SocketServer(QObject *parent) : QTcpServer(parent)
 {
     // Установите ключ шифрования
@@ -27,7 +30,8 @@ void SocketServer::incomingConnection(qintptr socketDescriptor)// Принять
     clientSocket->setSocketDescriptor(socketDescriptor);
 
     // Сгенерировать уникальный идентификатор клиента
-    QString uuid = QUuid::createUuid().toString(QUuid::WithoutBraces);
+//    QString uuid = QUuid::createUuid().toString(QUuid::WithoutBraces);
+    QString uuid = QUuid::createUuid().toString();
     clientIds.insert(socketDescriptor, uuid);
     clients.insert(uuid, clientSocket);
 
@@ -74,6 +78,7 @@ void SocketServer::onReadyRead()
     AbstractCommand *cmd = nullptr;
     // stream >> cmd;
 
+
     if ( !cmd )
         return;
 
@@ -119,10 +124,11 @@ void SocketServer::onSend(CmdPtr cmd)
 
     QByteArray arr;
     QDataStream stream( &arr, QIODevice::WriteOnly );
-    AbstractCommand * command = cmd.data();
-    // AbstractCommand * command = nullptr;
+    // AbstractCommand * command = cmd.data();
+    AbstractCommand * command = nullptr;
     // AbstractCommand command();
     stream << command;
+    // stream << cmd;
 
     int size = arr.size();
     QByteArray num;

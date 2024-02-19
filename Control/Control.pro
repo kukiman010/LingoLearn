@@ -14,6 +14,7 @@ SOURCES += \
     abstractcommand.cpp \
     abstractobject.cpp \
     command.cpp \
+    factory.cpp \
     socket.cpp
 
 # Default rules for deployment.
@@ -25,5 +26,6 @@ HEADERS += \
     abstractcommand.h \
     abstractobject.h \
     command.h \
+    factory.h \
     saved_container.h \
     socket.h
