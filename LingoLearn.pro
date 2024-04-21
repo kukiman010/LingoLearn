@@ -3,5 +3,6 @@ CONFIG += ordered
 SUBDIRS += \
     Client \
     Control \
-    Server
-w
+    Server \
+    Interface
+

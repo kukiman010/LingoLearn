@@ -76,8 +76,7 @@ void SocketServer::onReadyRead()
     QDataStream stream( &arr, QIODevice::ReadOnly );
 
     AbstractCommand *cmd = nullptr;
-    // stream >> cmd;
-
+    stream >> cmd;
 
     if ( !cmd )
         return;
@@ -113,8 +112,6 @@ void SocketServer::onDisconnected()
     qDebug() << "Client " << clientId << " has disconnected";
 }
 
-// #include "abstractcommand.h"
-
 void SocketServer::onSend(CmdPtr cmd)
 {
     QSharedPointer<QTcpSocket> clientSocket = clients.value(cmd->userId());
@@ -124,11 +121,10 @@ void SocketServer::onSend(CmdPtr cmd)
 
     QByteArray arr;
     QDataStream stream( &arr, QIODevice::WriteOnly );
-    // AbstractCommand * command = cmd.data();
-    AbstractCommand * command = nullptr;
+    AbstractCommand * command = cmd.data();
+    // AbstractCommand * command = nullptr;
     // AbstractCommand command();
     stream << command;
-    // stream << cmd;
 
     int size = arr.size();
     QByteArray num;
@@ -139,25 +135,4 @@ void SocketServer::onSend(CmdPtr cmd)
     clientSocket->write( arr );
 }
 
-// void SocketServer::onSend(CmdPtr cmd)
-// {
-//     QSharedPointer<QTcpSocket> clientSocket = clients.value(cmd->userId());
-
-//     if (!clientSocket)
-//         return;
-
-//     QByteArray arr;
-//     QDataStream stream( &arr, QIODevice::WriteOnly );
-//     // AbstractCommand * command = cmd.data();
-//     AbstractCommand * command = new AbstractCommand();
-//     stream << command;
-
-//     int size = arr.size();
-//     QByteArray num;
-//     QDataStream strm( &num, QIODevice::WriteOnly );
-//     strm << size;
-
-//     clientSocket->write( num );
-//     clientSocket->write( arr );
-// }
 

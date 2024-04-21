@@ -4,7 +4,7 @@ QDataStream & operator >>(QDataStream &stream, Command &command)
 {
     uint8_t act, rev, typ;
     uint size, id;
-    QString str;
+    // QString str;
 
     stream  >> act
             >> id
@@ -25,14 +25,14 @@ QDataStream & operator >>(QDataStream &stream, Command &command)
     // command._revers = static_cast<Command::commandRevers>(rev);
     command._type = static_cast<Command::commandType>(typ);
 
-    uint sizeDes;
-    stream >>sizeDes;
-    for(uint i=0;i < size; ++i)
-    {
-        uint cache;
-        stream >> cache;
-        command._destination.push_back(cache);
-    }
+    // uint sizeDes;
+    // stream >>sizeDes;
+    // for(uint i=0; i < size; ++i)
+    // {
+    //     uint cache;
+    //     stream >> cache;
+    //     command._destination.push_back(cache);
+    // }
 
 
     return stream;
