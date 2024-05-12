@@ -3,8 +3,8 @@
 QDataStream & operator >>(QDataStream &stream, Command &command)
 {
     uint8_t act, rev, typ;
-    uint size, id;
-    // QString str;
+    uint  size, id;
+    QString str;
 
     stream  >> act
             >> id
@@ -27,7 +27,7 @@ QDataStream & operator >>(QDataStream &stream, Command &command)
 
     // uint sizeDes;
     // stream >>sizeDes;
-    // for(uint i=0; i < size; ++i)
+    // for(uint i=0;i < size; ++i)
     // {
     //     uint cache;
     //     stream >> cache;

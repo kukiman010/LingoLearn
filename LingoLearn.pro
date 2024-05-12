@@ -4,5 +4,6 @@ SUBDIRS += \
     Client \
     Control \
     Server \
-    Interface
-
+    Interface/Interface \
+    opensslTest
+w

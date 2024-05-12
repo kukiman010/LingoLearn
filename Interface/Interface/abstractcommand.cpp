@@ -5,7 +5,6 @@
 
 AbstractCommand::AbstractCommand() :
     _commandDestination(DESTINATION_UNKNOWN),
-    // _userId(""),
     _infoFlag(0),
     _priority(0.0f),
     _finished(false)
@@ -83,7 +82,8 @@ QDataStream & operator >>(QDataStream &stream, AbstractCommand *&command)
     if ( !command )
         return stream;
 
-    command->setUserId( userId );
+    // command->setArmId( armId );
+    command->setUserId(userId);
     command->setDestination( static_cast<AbstractCommand::CommandDestination>( destination ) );
     command->_infoFlag = infoFlag;
     command->_priority = priority;
@@ -107,7 +107,8 @@ QDataStream & operator <<(QDataStream &stream, AbstractCommand *&command)
     stream << static_cast<int>( command->commandType() );
     stream << static_cast<int>( command->_commandDestination );
     stream << static_cast<int>( command->_objects.size() );
-    stream << static_cast<QString>( command->userId() );
+    // stream << static_cast<int>( command->armId() );
+    stream << command->userId();
     stream << command->_infoFlag;
     stream << command->_priority;
     stream << command->scenarionID().uniqueId;

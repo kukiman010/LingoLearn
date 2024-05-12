@@ -7,8 +7,12 @@
 //#include <QCryptographicHash>
 #include <QDebug>
 
+
+
+// #include "command.h"
 #include "abstractcommand.h"
 
+//class SocketServer : public QTcpServer
 class SocketServer : public QTcpServer
 {
     Q_OBJECT

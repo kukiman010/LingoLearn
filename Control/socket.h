@@ -4,7 +4,6 @@
 #include <QTcpServer>
 #include <QCryptographicHash>
 
-
 // enum class TypeNetworkSocket {
 //     TNS_Server,
 //     TNS_Client
