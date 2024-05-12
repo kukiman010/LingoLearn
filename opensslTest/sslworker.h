@@ -25,7 +25,6 @@ public:
     bool configure_ssl_context(SSL_CTX* ctx);
     SSL* prepare_ssl_connection(SSL_CTX* ctx, int client_socket);
     void test();
-
 };
 
 #endif // SSLWORKER_H

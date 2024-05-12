@@ -1,6 +1,7 @@
 QT = core network
 
-CONFIG += c++17 cmdline
+CONFIG += c++11 cmdline
+# CONFIG += c++17 cmdline
 
 # You can make your code fail to compile if it uses deprecated APIs.
 # In order to do so, uncomment the following line.
@@ -19,7 +20,17 @@ HEADERS += \
     socketserver.h
 
 
-
+win32 {
+    # LIBS += "C:/Program Files/OpenSSL/bin/libcrypto-1_1-x64.dll"
+    # LIBS += "C:/Program Files/OpenSSL/bin/libssl-1_1-x64.dll"
+    # LIBS += "C:/Program Files/OpenSSL/bin"
+    # LIBS += -L"C:/Program Files/OpenSSL/lib" -lssl  -lcrypto-3-x64
+    INCLUDEPATH += "C:/Program Files/OpenSSL/include"
+    LIBS += -L"C:/Program Files/OpenSSL/lib" -lssl  -lcrypto
+} else:unix {
+    INCLUDEPATH += "/home/sysadm/qt_project/openssl/include/openssl"
+    LIBS += -L"/home/sysadm/qt_project/openssl/lib64" -lssl -lcrypto -ldl -lpthread
+}
 
 
 win32:CONFIG(release, debug|release): LIBS += -L$$OUT_PWD/../Interface/Interface/release/ -lInterface
@@ -51,3 +62,6 @@ else:win32-g++:CONFIG(debug, debug|release): PRE_TARGETDEPS += $$OUT_PWD/../Cont
 else:win32:!win32-g++:CONFIG(release, debug|release): PRE_TARGETDEPS += $$OUT_PWD/../Control/release/Control.lib
 else:win32:!win32-g++:CONFIG(debug, debug|release): PRE_TARGETDEPS += $$OUT_PWD/../Control/debug/Control.lib
 else:unix: PRE_TARGETDEPS += $$OUT_PWD/../Control/libControl.a
+
+DISTFILES += \
+    CMakeLists.txt

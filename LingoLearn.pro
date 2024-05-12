@@ -5,5 +5,6 @@ SUBDIRS += \
     Control \
     Server \
     Interface/Interface \
-    opensslTest
-w
+    opensslTest \
+    Server1
+

@@ -4,10 +4,19 @@
 // #include <QUuid>
 #include "sslworker.h"
 #include <QUdpSocket>
+// #include <openssl/ssl.h>
+#include "openssl/ssl.h"
 
 int main(int argc, char *argv[])
 {
     QCoreApplication a(argc, argv);
+
+
+    OpenSSL_add_all_algorithms();
+    SSL_load_error_strings();
+
+    // Вывод версии OpenSSL
+    std::cout << "OpenSSL version: " << SSLeay_version(SSLEAY_VERSION) << std::endl;
 
     // QString uuid = QUuid::createUuid().toString(QUuid::WithoutBraces);
     // QString s = QUuid::toString(QUuid::WithoutBraces);

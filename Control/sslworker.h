@@ -1,20 +1,22 @@
-//#ifndef SSLWORKER_H
-//#define SSLWORKER_H
+#ifndef SSLWORKER_H
+#define SSLWORKER_H
 
-//#include <QObject>
+#include <QObject>
 
-//#include <openssl/ssl.h>
-//#include <openssl/err.h>
-//#include <openssl/bio.h>
-//#include <openssl/rsa.h>
-//#include <iostream>
+// #include "openssl/ssl.h"
+// #include <openssl/ssl.h>
+// #include <openssl/ssl.h>
+// #include <openssl/err.h>
+// #include <openssl/bio.h>
+// #include <openssl/rsa.h>
+#include <iostream>
 
-//using namespace std;
+using namespace std;
 
-//class SslWorker
-//{
-////    Q_OBJECT
-//public:
+// class SslWorker
+// {
+// //    Q_OBJECT
+// public:
 //    SslWorker();
 //    ~SslWorker() {}
 
@@ -25,6 +27,6 @@
 //    SSL* prepare_ssl_connection(SSL_CTX* ctx, int client_socket);
 //    void test();
 
-//};
+// };
 
-//#endif // SSLWORKER_H
+#endif // SSLWORKER_H
