@@ -32,10 +32,6 @@ HEADERS += \
 
 
 win32 {
-    # LIBS += "C:/Program Files/OpenSSL/bin/libcrypto-1_1-x64.dll"
-    # LIBS += "C:/Program Files/OpenSSL/bin/libssl-1_1-x64.dll"
-    # LIBS += "C:/Program Files/OpenSSL/bin"
-    # LIBS += -L"C:/Program Files/OpenSSL/lib" -lssl  -lcrypto-3-x64
     INCLUDEPATH += "C:/Program Files/OpenSSL/include"
     LIBS += -L"C:/Program Files/OpenSSL/lib" -lssl  -lcrypto
 } else:unix {

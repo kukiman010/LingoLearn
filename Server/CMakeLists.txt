@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.10)
 
 # Имя проекта и версия
-project(MyProject VERSION 1.0)
+project(Server VERSION 1.0)
 
 # Установка стандарта C++
 set(CMAKE_CXX_STANDARD 17)
@@ -27,39 +27,39 @@ set(HEADERS
 )
 
 # Добавление исполняемого файла
-add_executable(MyExecutable ${SOURCES} ${HEADERS})
+add_executable(${PROJECT_NAME} ${SOURCES} ${HEADERS})
 
 # Линковка с Qt5
-target_link_libraries(MyExecutable Qt5::Core Qt5::Network)
+target_link_libraries(${PROJECT_NAME} Qt5::Core Qt5::Network)
 
 # Пути к дополнительным библиотекам и заголовочным файлам
 if(WIN32)
-    target_include_directories(MyExecutable PRIVATE "C:/Program Files/OpenSSL/include")
-    target_link_directories(MyExecutable PRIVATE "C:/Program Files/OpenSSL/lib")
-    target_link_libraries(MyExecutable ssl crypto)
+    target_include_directories(${PROJECT_NAME} PRIVATE "C:/Program Files/OpenSSL/include")
+    target_link_directories(${PROJECT_NAME} PRIVATE "C:/Program Files/OpenSSL/lib")
+    target_link_libraries(${PROJECT_NAME} ssl crypto)
 else()
-    target_include_directories(MyExecutable PRIVATE "/home/sysadm/qt_project/openssl/include/openssl")
-    target_link_directories(MyExecutable PRIVATE "/home/sysadm/qt_project/openssl/lib64")
-    target_link_libraries(MyExecutable ssl crypto dl pthread)
+    target_include_directories(${PROJECT_NAME} PRIVATE "/home/sysadm/qt_project/openssl/include/openssl")
+    target_link_directories(${PROJECT_NAME} PRIVATE "/home/sysadm/qt_project/openssl/lib64")
+    target_link_libraries(${PROJECT_NAME} ssl crypto dl pthread)
 endif()
 
 # Специфичные зависимости для разных платформ и конфигураций
 # Интерфейс
-target_include_directories(MyExecutable PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../Interface/Interface)
-target_link_directories(MyExecutable PRIVATE ${CMAKE_CURRENT_BINARY_DIR}/../Interface/Interface)
+target_include_directories(${PROJECT_NAME} PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../Interface/Interface)
+target_link_directories(${PROJECT_NAME} PRIVATE ${CMAKE_CURRENT_BINARY_DIR}/../Interface/Interface)
 
 if(WIN32)
-    target_link_libraries(MyExecutable optimized Interface debug Interface_d)
+    target_link_libraries(${PROJECT_NAME} optimized Interface debug Interface_d)
 else()
-    target_link_libraries(MyExecutable Interface)
+    target_link_libraries(${PROJECT_NAME} Interface)
 endif()
 
 # Контроль
-target_include_directories(MyExecutable PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../Control)
-target_link_directories(MyExecutable PRIVATE ${CMAKE_CURRENT_BINARY_DIR}/../Control)
+target_include_directories(${PROJECT_NAME} PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../Control)
+target_link_directories(${PROJECT_NAME} PRIVATE ${CMAKE_CURRENT_BINARY_DIR}/../Control)
 
 if(WIN32)
-    target_link_libraries(MyExecutable optimized Control debug Control_d)
+    target_link_libraries(${PROJECT_NAME} optimized Control debug Control_d)
 else()
-    target_link_libraries(MyExecutable Control)
+    target_link_libraries(${PROJECT_NAME} Control)
 endif()
